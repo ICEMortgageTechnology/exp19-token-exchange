@@ -1,0 +1,109 @@
+{
+	"info": {
+		"_postman_id": "fa6cb051-ab44-4306-bcba-4b29d1e1378f",
+		"name": "Token Exchange",
+		"description": "This collection is used to test your Token Exchange Service by simulating the flow of authenticating the user against the Ellie Mae Identity Service (EMIdS) and then invoking the token exchange process to generate an access code for your application.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Create Auth Code for Guest Application",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0cee999b-f1e8-4aee-b276-984c1a2d69b6",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"guest_auth_token\", jsonData.authorization_code);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "urn:ietf:params:oauth:grant-type:token-exchange",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "tirykwfo",
+							"description": "The LO Connect OAuth Client ID",
+							"type": "text"
+						},
+						{
+							"key": "subject_token",
+							"value": "{{loc_access_token}}",
+							"description": "The Access Token obtained by LO Connect at login",
+							"type": "text"
+						},
+						{
+							"key": "subject_token_type",
+							"value": "urn:ietf:params:oauth:token-type:access_token",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{emids_host}}/oauth2/v1/token",
+					"host": [
+						"{{emids_host}}"
+					],
+					"path": [
+						"oauth2",
+						"v1",
+						"token"
+					]
+				},
+				"description": "The guest script invokes the Auth.createAuthCode() function to create an auth code tied to their OAuth Client ID."
+			},
+			"response": []
+		},
+		{
+			"name": "2. Token Exchange",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"authCode\": \"paste_authcode_here\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:62079/api/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "62079",
+					"path": [
+						"api",
+						"token"
+					]
+				},
+				"description": "The guest script invokes the Token Exchange Service (TES), hosted on the guest's servers, to exchange the auth code for the access token. In this example, it is assumed the TES is running on localhost."
+			},
+			"response": []
+		}
+	]
+}

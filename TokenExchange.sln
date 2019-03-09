@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokenExchange", "TokenExchange\TokenExchange.csproj", "{528DE7B5-68AA-4E24-BB62-F1E8AA152D7C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{528DE7B5-68AA-4E24-BB62-F1E8AA152D7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{528DE7B5-68AA-4E24-BB62-F1E8AA152D7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{528DE7B5-68AA-4E24-BB62-F1E8AA152D7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{528DE7B5-68AA-4E24-BB62-F1E8AA152D7C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7DB27441-5A1F-4474-B8CF-761756DE60E0}
+	EndGlobalSection
+EndGlobal
